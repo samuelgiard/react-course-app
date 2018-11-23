@@ -13,29 +13,43 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'Samuel Giard',
-  age: 51,
-  stressLevel: 6,
-  job: {
-    title: 'Software developper',
-    company: 'Google'
-  },
-  location: {
-    city: 'Philadelphia',
-    country: 'United States'
-  }
-}).then(() => {
-  console.log('Data is saved,');
-}).catch((e) => {
-  console.log('This failed.', e);
-});
+database.ref()
+  .once('value')
+  .then((snapshot) => {
+    const val = snapshot.val();
+    console.log(val);
+  })
+  .catch((e) => {
+    console.log('Error fetching data', e)
+  });
 
-database.ref().update({
-  stressLevel: 9,
-  'job/company': 'Amazon',
-  'location/city': 'Seattle'
-});
+// database.ref()
+// set({
+//   name: 'Samuel Giard',
+//   age: 51,
+//   stressLevel: 6,
+//   job: {
+//     title: 'Software developper',
+//     company: 'Google'
+//   },
+//   location: {
+//     city: 'Philadelphia',
+//     country: 'United States'
+//   }
+// })
+// .then(() => {
+//   console.log('Data is saved,');
+// })
+// .catch((e) => {
+//   console.log('This failed.', e);
+// });
+
+// database.ref()
+// .update({
+//   stressLevel: 9,
+//   'job/company': 'Amazon',
+//   'location/city': 'Seattle'
+// });
 
 // // set(null) permet de supprimer
 // database.ref('isSingle').set(null);
