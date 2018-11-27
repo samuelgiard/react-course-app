@@ -1,5 +1,6 @@
+.env.test
+.env.development
 .vscode/
 node_modules/
 public/dist/
 src/playground/
-src/firebase/
