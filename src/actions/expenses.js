@@ -34,12 +34,40 @@ export const removeExpense = ({ id } = {}) => ({
   id
 });
 
+export const startRemoveExpense = ({ id } = {}) => {
+  return (dispatch) => {
+    return database.ref('expenses/' + id)
+      .remove()
+      .then(() => {
+          console.log("Remove succeeded.");
+          dispatch(removeExpense({id}));
+        }).catch((e) => {
+          console.log('Something went wrong!', e)
+        });
+  }
+}
+
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
 });
+
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref('expenses/' + id)
+      .update({
+        ...updates
+      })
+      .then(() => {
+        console.log("Edition succeeded.");
+        dispatch(editExpense(id, updates));
+      }).catch((e) => {
+        console.log('Something went wrong!', e)
+      });
+  }
+}
 
 // SET_EXPENSES
 export const setExpenses = (expenses) => ({
