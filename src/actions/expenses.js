@@ -40,7 +40,7 @@ export const startRemoveExpense = ({ id } = {}) => {
       .remove()
       .then(() => {
           console.log("Remove succeeded.");
-          dispatch(removeExpense({id}));
+          dispatch(removeExpense({ id }));
         }).catch((e) => {
           console.log('Something went wrong!', e)
         });
@@ -56,10 +56,8 @@ export const editExpense = (id, updates) => ({
 
 export const startEditExpense = (id, updates) => {
   return (dispatch) => {
-    return database.ref('expenses/' + id)
-      .update({
-        ...updates
-      })
+    return database.ref(`expenses/${id}`)
+      .update(updates)
       .then(() => {
         console.log("Edition succeeded.");
         dispatch(editExpense(id, updates));
