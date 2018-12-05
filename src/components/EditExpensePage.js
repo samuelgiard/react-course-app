@@ -35,7 +35,7 @@ export class EditExpensePage extends React.Component {
           />
           <button
             className="button button--secondary"
-            onClick={this.startRemoveExpense}>Remove</button>
+            onClick={this.startRemoveExpense}>Remove Expense</button>
         </div>
       </div>
     );
